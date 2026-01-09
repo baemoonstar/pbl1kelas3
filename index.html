@@ -78,10 +78,6 @@
             margin-bottom: 15px;
         }
 
-        .emoji {
-            font-size: 1.3em;
-        }
-
         ul {
             list-style: none;
             padding-left: 0;
@@ -133,7 +129,6 @@
             box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);
         }
 
-        /* ANIMATED IMAGE PLACEHOLDER */
         .image-placeholder {
             background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
             border: 3px dashed #a0aec0;
@@ -152,7 +147,6 @@
             overflow: hidden;
         }
 
-        /* Animasi bergerak untuk placeholder gambar */
         .image-placeholder::before {
             content: '';
             position: absolute;
@@ -183,7 +177,6 @@
             z-index: 1;
         }
 
-        /* Icon bergerak di placeholder */
         .floating-icon {
             font-size: 4em;
             animation: float 3s ease-in-out infinite;
@@ -233,7 +226,6 @@
             animation: shimmer 3s infinite;
         }
 
-        /* FIXED CONTROLS AT TOP */
         .controls {
             position: sticky;
             top: 20px;
@@ -329,7 +321,6 @@
             font-size: 1.1em;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .slide {
                 padding: 30px 20px;
@@ -350,7 +341,6 @@
     </style>
 </head>
 <body>
-    <!-- STICKY CONTROLS AT TOP -->
     <div class="controls">
         <button id="prev-btn" onclick="changeSlide(-1)">← Sebelumnya</button>
         <span class="slide-number">Slide <span id="current-slide">1</span> / <span id="total-slides">12</span></span>
@@ -377,8 +367,7 @@
         <!-- SLIDE 2: BRAINSTORMING -->
         <div class="slide">
             <h2>🤔 Mari Kita Pikirkan...</h2>
-            <div class="image-placeholder">
-               <img src="gambar1" style="width: 100%; border-radius: 15px; margin: 20px 0;">
+            <img src="gambar1.jpg" style="width: 100%; border-radius: 15px; margin: 20px 0;">
             <div style="margin-top: 30px;">
                 <h3>Pertanyaan untuk Diskusi:</h3>
                 <ul>
@@ -433,8 +422,7 @@
                 <li><strong>Lubang drainase</strong> mencegah air menggenang dan busuk</li>
                 <li><strong>Cahaya tetap bisa masuk</strong> dari atas wadah</li>
             </ul>
-            <div class="image-placeholder" style="margin-top: 30px;">
-               <img src="gambar2.png" style="width: 100%; border-radius: 15px; margin: 20px 0;">
+            <img src="gambar2.png" style="width: 100%; border-radius: 15px; margin: 20px 0;">
         </div>
 
         <!-- SLIDE 5: WADAH YANG BAIK VS BURUK -->
@@ -462,8 +450,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="image-placeholder" style="margin-top: 20px;">
-                  <img src="gambar2.png" style="width: 100%; border-radius: 15px; margin: 20px 0;">
+            <img src="gambar3.jpg" style="width: 100%; border-radius: 15px; margin: 20px 0;">
         </div>
 
         <!-- SLIDE 6: INTERAKSI - PERTANYAAN -->
@@ -488,18 +475,7 @@
         <!-- SLIDE 7: JENIS WADAH KREATIF 1 -->
         <div class="slide">
             <h2>🎨 Wadah Kreatif dari Barang Bekas</h2>
-            <div class="image-placeholder">
-                <div class="image-placeholder-content">
-                    <div class="floating-icon">♻️</div>
-                    <p><strong>📸 GAMBAR 4:</strong> Kolase wadah kreatif dari barang bekas</p>
-                    <p style="font-size: 0.9em; margin-top: 10px;">Contoh: Botol plastik, kaleng bekas, ban bekas, sepatu, pipa PVC, cangkir pecah</p>
-                    <p style="font-size: 0.8em; color: #718096; margin-top: 15px;">
-                        💡 Cari: "recycled plant containers" "vertical garden bottles"<br>
-                        Atau GIF animasi: "DIY plant container gif"<br>
-                        Masukkan dengan: <code>&lt;img src="gambar4.gif" style="width:100%; border-radius:15px;"&gt;</code>
-                    </p>
-                </div>
-            </div>
+            <img src="gambar4.gif" style="width: 100%; border-radius: 15px; margin: 20px 0;">
             <div class="tip-box" style="margin-top: 20px;">
                 <strong>💬 Challenge untuk siswa:</strong> "Kalau kalian punya barang bekas di rumah, mau bikin wadah dari apa?"<br>
                 Biarkan siswa menyebutkan ide-ide kreatif mereka!
@@ -512,30 +488,12 @@
             <div class="grid-2">
                 <div>
                     <h3>🔮 Terrarium</h3>
-                    <div class="image-placeholder" style="min-height: 200px;">
-                        <div class="image-placeholder-content">
-                            <div class="floating-icon" style="font-size: 3em;">🔮</div>
-                            <p><strong>📸 GAMBAR 5:</strong> Foto terrarium (taman dalam botol kaca)</p>
-                            <p style="font-size: 0.8em; color: #718096; margin-top: 10px;">
-                                💡 Cari GIF: "terrarium gif" untuk animasi bergerak!<br>
-                                <code>&lt;img src="gambar5.gif"&gt;</code>
-                            </p>
-                        </div>
-                    </div>
+                    <img src="gambar5.gif" style="width: 100%; border-radius: 15px; margin: 15px 0;">
                     <p style="margin-top: 15px;">Ekosistem mini dalam wadah tertutup. Air bersirkulasi sendiri seperti hujan!</p>
                 </div>
                 <div>
                     <h3>💧 Hidroponik</h3>
-                    <div class="image-placeholder" style="min-height: 200px;">
-                        <div class="image-placeholder-content">
-                            <div class="floating-icon" style="font-size: 3em;">💧</div>
-                            <p><strong>📸 GAMBAR 6:</strong> Foto hidroponik sederhana</p>
-                            <p style="font-size: 0.8em; color: #718096; margin-top: 10px;">
-                                💡 Cari: "simple hydroponic system" atau GIF "hydroponics gif"<br>
-                                <code>&lt;img src="gambar6.gif"&gt;</code>
-                            </p>
-                        </div>
-                    </div>
+                    <img src="gambar6.gif" style="width: 100%; border-radius: 15px; margin: 15px 0;">
                     <p style="margin-top: 15px;">Tanam tanpa tanah! Hanya pakai air dan nutrisi khusus.</p>
                 </div>
             </div>
@@ -557,11 +515,7 @@
                     </ul>
                     <p style="font-size: 0.9em; color: #d35400; margin-top: 20px; background: rgba(255,255,255,0.9); padding: 15px; border-radius: 10px;">
                         💡 <strong>Cara embed video YouTube:</strong><br>
-                        1. Buka video di YouTube<br>
-                        2. Klik "Share" → "Embed"<br>
-                        3. Copy kode iframe<br>
-                        4. Ganti div ini dengan kode tersebut<br><br>
-                        <strong>Atau manual:</strong><br>
+                        Ganti div video-placeholder ini dengan:<br>
                         <code style="font-size: 0.8em;">&lt;iframe width="100%" height="450" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</code>
                     </p>
                 </div>
@@ -668,11 +622,9 @@
             slides[currentSlide].classList.add('active');
             document.getElementById('current-slide').textContent = currentSlide + 1;
             
-            // Update button states
             document.getElementById('prev-btn').disabled = currentSlide === 0;
             document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
 
-            // Scroll to top when changing slides
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -681,13 +633,11 @@
             showSlide(currentSlide);
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') changeSlide(-1);
             if (e.key === 'ArrowRight') changeSlide(1);
         });
 
-        // Initialize
         showSlide(0);
     </script>
 </body>
