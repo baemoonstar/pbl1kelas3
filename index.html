@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tumbuhan dalam Wadah 🌿</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+
+        .slide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .slide {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.5s ease;
+            margin-bottom: 20px;
+            min-height: 80vh;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.8em;
+            color: #4a5568;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #48bb78;
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 2em;
+            color: #2d3748;
+            margin: 25px 0 15px 0;
+        }
+
+        p, li {
+            font-size: 1.4em;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+
+        .emoji {
+            font-size: 1.3em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding-left: 40px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        li:before {
+            content: "🌱";
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .box {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #48bb78;
+        }
+
+        .box.bad {
+            border-left-color: #f56565;
+        }
+
+        .centered {
+            text-align: center;
+        }
+
+        .driving-question {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 1.8em;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);
+        }
+
+        /* ANIMATED IMAGE PLACEHOLDER */
+        .image-placeholder {
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+            border: 3px dashed #a0aec0;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            color: #4a5568;
+            font-size: 1.2em;
+            margin: 20px 0;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animasi bergerak untuk placeholder gambar */
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 70%
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .image-placeholder-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Icon bergerak di placeholder */
+        .floating-icon {
+            font-size: 4em;
+            animation: float 3s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            border: 3px dashed #f39c12;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            color: #e67e22;
+            font-size: 1.2em;
+            margin: 20px 0;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(243, 156, 18, 0.2) 50%,
+                transparent 70%
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        /* FIXED CONTROLS AT TOP */
+        .controls {
+            position: sticky;
+            top: 20px;
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            color: white;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-number {
+            font-weight: bold;
+            color: #2d3748;
+            font-size: 1.1em;
+        }
+
+        .check {
+            color: #48bb78;
+            margin-right: 10px;
+        }
+
+        .cross {
+            color: #f56565;
+            margin-right: 10px;
+        }
+
+        .tip-box {
+            background: #edf2f7;
+            border-left: 5px solid #4299e1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            color: white;
+            font-size: 1.5em;
+        }
+
+        .card p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .controls {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- STICKY CONTROLS AT TOP -->
+    <div class="controls">
+        <button id="prev-btn" onclick="changeSlide(-1)">← Sebelumnya</button>
+        <span class="slide-number">Slide <span id="current-slide">1</span> / <span id="total-slides">12</span></span>
+        <button id="next-btn" onclick="changeSlide(1)">Selanjutnya →</button>
+    </div>
+
+    <div class="slide-container">
+        <!-- SLIDE 1: COVER -->
+        <div class="slide active">
+            <div class="centered">
+                <h1>🌿 TUMBUHAN DALAM WADAH 🌿</h1>
+                <div class="driving-question">
+                    Bagaimana tumbuhan bisa hidup di dalam wadah?
+                </div>
+                <p style="font-size: 1.6em; margin-top: 40px; color: #718096;">
+                    Pertemuan 1 - Pengenalan & Eksplorasi
+                </p>
+                <p style="font-size: 1.2em; color: #a0aec0; margin-top: 20px;">
+                    Klik "Selanjutnya" untuk mulai →
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: BRAINSTORMING -->
+        <div class="slide">
+            <h2>🤔 Mari Kita Pikirkan...</h2>
+            <div class="image-placeholder">
+                <div class="image-placeholder-content">
+                    <div class="floating-icon">🪴</div>
+                    <p><strong>📸 GAMBAR 1:</strong> Masukkan foto/kolase berbagai tanaman dalam wadah unik</p>
+                    <p style="font-size: 0.9em; margin-top: 10px;">(Contoh: tanaman di kaleng bekas, botol, sepatu, akuarium, pot lucu)</p>
+                    <p style="font-size: 0.8em; color: #718096; margin-top: 15px;">
+                        💡 <strong>Cara masukkan:</strong><br>
+                        Ganti div ini dengan:<br>
+                        <code>&lt;img src="gambar1.jpg" style="width:100%; border-radius:15px;"&gt;</code>
+                    </p>
+                </div>
+            </div>
+            <div style="margin-top: 30px;">
+                <h3>Pertanyaan untuk Diskusi:</h3>
+                <ul>
+                    <li>Kalian pernah lihat tanaman ditanam di tempat aneh?</li>
+                    <li>Kenapa orang tanam di pot/wadah, bukan langsung di tanah?</li>
+                    <li>Menurut kalian, apa bedanya?</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: APA YANG TUMBUHAN BUTUHKAN -->
+        <div class="slide">
+            <h2>🌱 Apa yang Tumbuhan Butuhkan?</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>🏔️ Tanah/Media</h3>
+                    <p>Tempat akar dan sumber nutrisi</p>
+                </div>
+                <div class="card">
+                    <h3>💧 Air</h3>
+                    <p>Untuk proses kehidupan</p>
+                </div>
+                <div class="card">
+                    <h3>☀️ Cahaya</h3>
+                    <p>Untuk fotosintesis</p>
+                </div>
+                <div class="card">
+                    <h3>🌬️ Udara</h3>
+                    <p>Untuk bernapas</p>
+                </div>
+                <div class="card">
+                    <h3>🌿 Ruang</h3>
+                    <p>Agar akar bisa tumbuh</p>
+                </div>
+                <div class="card">
+                    <h3>🍃 Nutrisi</h3>
+                    <p>Dari tanah & pupuk</p>
+                </div>
+            </div>
+            <div class="tip-box" style="margin-top: 30px;">
+                <strong>💬 Tanya siswa:</strong> "Menurut kalian, yang PALING penting yang mana?"
+            </div>
+        </div>
+
+        <!-- SLIDE 4: KENAPA BISA HIDUP DI WADAH -->
+        <div class="slide">
+            <h2>💡 Kenapa Bisa Hidup di Wadah?</h2>
+            <ul style="font-size: 1.3em;">
+                <li><strong>Akar menyesuaikan diri</strong> dengan ukuran wadah yang ada</li>
+                <li><strong>Tanah yang cukup</strong> tetap menyediakan nutrisi</li>
+                <li><strong>Air yang pas</strong> - tidak terlalu banyak, tidak terlalu sedikit</li>
+                <li><strong>Lubang drainase</strong> mencegah air menggenang dan busuk</li>
+                <li><strong>Cahaya tetap bisa masuk</strong> dari atas wadah</li>
+            </ul>
+            <div class="image-placeholder" style="margin-top: 30px;">
+                <div class="image-placeholder-content">
+                    <div class="floating-icon">🌻</div>
+                    <p><strong>📸 GAMBAR 2:</strong> Diagram sederhana tanaman dalam pot</p>
+                    <p style="font-size: 0.9em; margin-top: 10px;">(Tunjukkan: akar, tanah, lubang drainase, air, cahaya matahari)</p>
+                    <p style="font-size: 0.8em; color: #718096; margin-top: 15px;">
+                        💡 Bisa buat diagram sendiri atau cari: "plant in pot diagram"<br>
+                        Atau pakai: <code>&lt;img src="gambar2.jpg" style="width:100%; border-radius:15px;"&gt;</code>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: WADAH YANG BAIK VS BURUK -->
+        <div class="slide">
+            <h2>✅❌ Wadah yang Baik vs Buruk</h2>
+            <div class="grid-2">
+                <div class="box">
+                    <h3><span class="check">✅</span>Wadah yang BAIK</h3>
+                    <ul style="font-size: 1.1em;">
+                        <li>Ada lubang di bawah</li>
+                        <li>Ukuran sesuai tanaman</li>
+                        <li>Tanah cukup (3/4 wadah)</li>
+                        <li>Material tidak beracun</li>
+                        <li>Bisa mendapat cahaya</li>
+                    </ul>
+                </div>
+                <div class="box bad">
+                    <h3><span class="cross">❌</span>Wadah yang BURUK</h3>
+                    <ul style="font-size: 1.1em;">
+                        <li>Tidak ada lubang (air menggenang)</li>
+                        <li>Terlalu kecil untuk tanaman</li>
+                        <li>Tanah terlalu sedikit</li>
+                        <li>Tidak tembus cahaya sama sekali</li>
+                        <li>Material berbahaya</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="image-placeholder" style="margin-top: 20px;">
+                <div class="image-placeholder-content">
+                    <div class="floating-icon">✅❌</div>
+                    <p><strong>📸 GAMBAR 3:</strong> Foto perbandingan 2 pot (baik vs buruk)</p>
+                    <p style="font-size: 0.8em; color: #718096; margin-top: 10px;">
+                        💡 Cari: "good vs bad plant pot" atau foto sendiri<br>
+                        Ganti dengan: <code>&lt;img src="gambar3.jpg" style="width:100%; border-radius:15px;"&gt;</code>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: INTERAKSI - PERTANYAAN -->
+        <div class="slide">
+            <div class="centered">
+                <h2>🤔 Pertanyaan Interaktif</h2>
+                <div class="driving-question" style="font-size: 1.5em; margin: 40px 0;">
+                    Menurut kalian, pohon mangga bisa nggak ditanam di gelas?
+                </div>
+                <p style="font-size: 1.4em; color: #4a5568; margin: 30px 0;">
+                    <strong>Angkat tangan:</strong>
+                </p>
+                <p style="font-size: 1.6em;">
+                    👍 BISA &nbsp;&nbsp;&nbsp;&nbsp; 👎 TIDAK BISA
+                </p>
+                <div class="tip-box" style="margin-top: 50px; text-align: left;">
+                    <strong>💬 Diskusi:</strong> Kenapa? Jelaskan konsep ukuran wadah harus sesuai dengan ukuran tanaman. Akar pohon besar butuh ruang lebih besar!
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: JENIS WADAH KREATIF 1 -->
+        <div class="slide">
+            <h2>🎨 Wadah Kreatif dari Barang Bekas</h2>
+            <div class="image-placeholder">
+                <div class="image-placeholder-content">
+                    <div class="floating-icon">♻️</div>
+                    <p><strong>📸 GAMBAR 4:</strong> Kolase wadah kreatif dari barang bekas</p>
+                    <p style="font-size: 0.9em; margin-top: 10px;">Contoh: Botol plastik, kaleng bekas, ban bekas, sepatu, pipa PVC, cangkir pecah</p>
+                    <p style="font-size: 0.8em; color: #718096; margin-top: 15px;">
+                        💡 Cari: "recycled plant containers" "vertical garden bottles"<br>
+                        Atau GIF animasi: "DIY plant container gif"<br>
+                        Masukkan dengan: <code>&lt;img src="gambar4.gif" style="width:100%; border-radius:15px;"&gt;</code>
+                    </p>
+                </div>
+            </div>
+            <div class="tip-box" style="margin-top: 20px;">
+                <strong>💬 Challenge untuk siswa:</strong> "Kalau kalian punya barang bekas di rumah, mau bikin wadah dari apa?"<br>
+                Biarkan siswa menyebutkan ide-ide kreatif mereka!
+            </div>
+        </div>
+
+        <!-- SLIDE 8: JENIS WADAH KREATIF 2 -->
+        <div class="slide">
+            <h2>🌟 Wadah Spesial: Terrarium & Hidroponik</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>🔮 Terrarium</h3>
+                    <div class="image-placeholder" style="min-height: 200px;">
+                        <div class="image-placeholder-content">
+                            <div class="floating-icon" style="font-size: 3em;">🔮</div>
+                            <p><strong>📸 GAMBAR 5:</strong> Foto terrarium (taman dalam botol kaca)</p>
+                            <p style="font-size: 0.8em; color: #718096; margin-top: 10px;">
+                                💡 Cari GIF: "terrarium gif" untuk animasi bergerak!<br>
+                                <code>&lt;img src="gambar5.gif"&gt;</code>
+                            </p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px;">Ekosistem mini dalam wadah tertutup. Air bersirkulasi sendiri seperti hujan!</p>
+                </div>
+                <div>
+                    <h3>💧 Hidroponik</h3>
+                    <div class="image-placeholder" style="min-height: 200px;">
+                        <div class="image-placeholder-content">
+                            <div class="floating-icon" style="font-size: 3em;">💧</div>
+                            <p><strong>📸 GAMBAR 6:</strong> Foto hidroponik sederhana</p>
+                            <p style="font-size: 0.8em; color: #718096; margin-top: 10px;">
+                                💡 Cari: "simple hydroponic system" atau GIF "hydroponics gif"<br>
+                                <code>&lt;img src="gambar6.gif"&gt;</code>
+                            </p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px;">Tanam tanpa tanah! Hanya pakai air dan nutrisi khusus.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: VIDEO -->
+        <div class="slide">
+            <h2>🎬 Mari Kita Lihat!</h2>
+            <div class="video-placeholder">
+                <div style="position: relative; z-index: 1;">
+                    <div class="floating-icon">🎥</div>
+                    <p style="font-size: 1.5em;"><strong>VIDEO:</strong> Masukkan video pendek (2-3 menit)</p>
+                    <p style="font-size: 1.1em; margin-top: 15px;">Topik yang bisa dicari di YouTube:</p>
+                    <ul style="list-style: none; padding: 0; text-align: center; margin-top: 10px;">
+                        <li>• "How plants grow in containers"</li>
+                        <li>• "DIY vertical garden from plastic bottles"</li>
+                        <li>• "Terrarium ecosystem explained"</li>
+                        <li>• "Container gardening for beginners"</li>
+                    </ul>
+                    <p style="font-size: 0.9em; color: #d35400; margin-top: 20px; background: rgba(255,255,255,0.9); padding: 15px; border-radius: 10px;">
+                        💡 <strong>Cara embed video YouTube:</strong><br>
+                        1. Buka video di YouTube<br>
+                        2. Klik "Share" → "Embed"<br>
+                        3. Copy kode iframe<br>
+                        4. Ganti div ini dengan kode tersebut<br><br>
+                        <strong>Atau manual:</strong><br>
+                        <code style="font-size: 0.8em;">&lt;iframe width="100%" height="450" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</code>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: CARA MERAWAT -->
+        <div class="slide">
+            <h2>🌿 Cara Merawat Tanaman dalam Wadah</h2>
+            <div class="grid-2" style="margin-top: 30px;">
+                <div class="box">
+                    <h3>💧 Penyiraman</h3>
+                    <p>• Cek tanah: kering = siram, basah = tunggu</p>
+                    <p>• Jangan terlalu banyak air (akar bisa busuk!)</p>
+                    <p>• Siram pagi atau sore hari</p>
+                </div>
+                <div class="box">
+                    <h3>☀️ Penempatan</h3>
+                    <p>• Letakkan di tempat yang dapat cahaya</p>
+                    <p>• Sesuaikan dengan jenis tanaman</p>
+                    <p>• Putar pot kadang-kadang agar rata</p>
+                </div>
+                <div class="box">
+                    <h3>🍂 Perawatan Daun</h3>
+                    <p>• Buang daun yang mati/kering</p>
+                    <p>• Bersihkan debu di daun</p>
+                    <p>• Perhatikan hama dan penyakit</p>
+                </div>
+                <div class="box">
+                    <h3>🌱 Nutrisi</h3>
+                    <p>• Beri pupuk sesekali (opsional)</p>
+                    <p>• Ganti tanah jika sudah lama</p>
+                    <p>• Pindah ke wadah lebih besar jika perlu</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: GAMES TIME -->
+        <div class="slide">
+            <div class="centered">
+                <h2>🎮 GAMES TIME!</h2>
+                <div class="driving-question" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    Siap main games seru?
+                </div>
+                <div style="margin-top: 50px;">
+                    <h3 style="color: #2d3748;">Pilih platform:</h3>
+                    <div class="grid-3" style="margin-top: 30px;">
+                        <div class="card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <h3>📱 Kahoot</h3>
+                            <p>Quiz interaktif dengan kompetisi!</p>
+                        </div>
+                        <div class="card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                            <h3>🎯 Quizizz</h3>
+                            <p>Self-paced dengan avatar lucu!</p>
+                        </div>
+                        <div class="card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <h3>🎲 Wordwall</h3>
+                            <p>Matching game & puzzle!</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size: 1.2em; margin-top: 40px; color: #718096;">
+                    Buka link yang akan dibagikan guru...
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: PENUTUP -->
+        <div class="slide">
+            <div class="centered">
+                <h2>🌟 Kesimpulan</h2>
+                <div class="driving-question">
+                    Tumbuhan BISA hidup di wadah karena...
+                </div>
+                <ul style="text-align: left; max-width: 800px; margin: 30px auto; font-size: 1.3em;">
+                    <li>Kebutuhan dasar tumbuhan (air, tanah, cahaya, udara) tetap terpenuhi</li>
+                    <li>Akar tanaman PINTAR menyesuaikan diri dengan ruang yang ada</li>
+                    <li>Yang penting: wadah sesuai ukuran, ada drainase, dan dirawat baik</li>
+                </ul>
+                <div class="tip-box" style="max-width: 800px; margin: 40px auto;">
+                    <h3>📸 Preview Besok:</h3>
+                    <p style="font-size: 1.2em;">Kita akan OUTDOOR dan lihat langsung berbagai tanaman dalam wadah! Siap-siap amati dan foto ya! 📷🌿</p>
+                </div>
+                <p style="font-size: 1.6em; margin-top: 40px; color: #48bb78;">
+                    <strong>Mulai nanam di rumah yuk! 🌱</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (n >= totalSlides) currentSlide = totalSlides - 1;
+            if (n < 0) currentSlide = 0;
+            
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Update button states
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+
+            // Scroll to top when changing slides
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
