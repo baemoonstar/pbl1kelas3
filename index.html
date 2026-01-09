@@ -133,107 +133,19 @@
             box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);
         }
 
-        /* ANIMATED IMAGE PLACEHOLDER */
-        .image-placeholder {
-            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
-            border: 3px dashed #a0aec0;
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            color: #4a5568;
-            font-size: 1.2em;
+        .image-container {
             margin: 20px 0;
-            min-height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Animasi bergerak untuk placeholder gambar */
-        .image-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.3) 50%,
-                transparent 70%
-            );
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-            }
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-            }
-        }
-
-        .image-placeholder-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Icon bergerak di placeholder */
-        .floating-icon {
-            font-size: 4em;
-            animation: float 3s ease-in-out infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .video-placeholder {
-            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
-            border: 3px dashed #f39c12;
             border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            color: #e67e22;
-            font-size: 1.2em;
-            margin: 20px 0;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .video-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(243, 156, 18, 0.2) 50%,
-                transparent 70%
-            );
-            animation: shimmer 3s infinite;
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        /* FIXED CONTROLS AT TOP */
         .controls {
             position: sticky;
             top: 20px;
@@ -329,6 +241,19 @@
             font-size: 1.1em;
         }
 
+        .video-container {
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .slide {
@@ -345,6 +270,9 @@
             }
             .controls {
                 padding: 10px 15px;
+            }
+            .video-container iframe {
+                height: 250px;
             }
         }
     </style>
@@ -377,17 +305,8 @@
         <!-- SLIDE 2: BRAINSTORMING -->
         <div class="slide">
             <h2>🤔 Mari Kita Pikirkan...</h2>
-            <div class="image-placeholder">
-                <div class="image-placeholder-content">
-                    <div class="floating-icon">🪴</div>
-                    <p><strong>📸 GAMBAR 1:</strong> Masukkan foto/kolase berbagai tanaman dalam wadah unik</p>
-                    <p style="font-size: 0.9em; margin-top: 10px;">(Contoh: tanaman di kaleng bekas, botol, sepatu, akuarium, pot lucu)</p>
-                    <p style="font-size: 0.8em; color: #718096; margin-top: 15px;">
-                        💡 <strong>Cara masukkan:</strong><br>
-                        Ganti div ini dengan:<br>
-                        <code>&lt;img src="gambar1.jpg" style="width:100%; border-radius:15px;"&gt;</code>
-                    </p>
-                </div>
+            <div class="image-container">
+                <img src="gambar1" alt="Berbagai tanaman dalam wadah unik">
             </div>
             <div style="margin-top: 30px;">
                 <h3>Pertanyaan untuk Diskusi:</h3>
@@ -443,16 +362,8 @@
                 <li><strong>Lubang drainase</strong> mencegah air menggenang dan busuk</li>
                 <li><strong>Cahaya tetap bisa masuk</strong> dari atas wadah</li>
             </ul>
-            <div class="image-placeholder" style="margin-top: 30px;">
-                <div class="image-placeholder-content">
-                    <div class="floating-icon">🌻</div>
-                    <p><strong>📸 GAMBAR 2:</strong> Diagram sederhana tanaman dalam pot</p>
-                    <p style="font-size: 0.9em; margin-top: 10px;">(Tunjukkan: akar, tanah, lubang drainase, air, cahaya matahari)</p>
-                    <p style="font-size: 0.8em; color: #718096; margin-top: 15px;">
-                        💡 Bisa buat diagram sendiri atau cari: "plant in pot diagram"<br>
-                        Atau pakai: <code>&lt;img src="gambar2.jpg" style="width:100%; border-radius:15px;"&gt;</code>
-                    </p>
-                </div>
+            <div class="image-container" style="margin-top: 30px;">
+                <img src="gambar2.png" alt="Diagram tanaman dalam pot">
             </div>
         </div>
 
@@ -481,15 +392,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="image-placeholder" style="margin-top: 20px;">
-                <div class="image-placeholder-content">
-                    <div class="floating-icon">✅❌</div>
-                    <p><strong>📸 GAMBAR 3:</strong> Foto perbandingan 2 pot (baik vs buruk)</p>
-                    <p style="font-size: 0.8em; color: #718096; margin-top: 10px;">
-                        💡 Cari: "good vs bad plant pot" atau foto sendiri<br>
-                        Ganti dengan: <code>&lt;img src="gambar3.jpg" style="width:100%; border-radius:15px;"&gt;</code>
-                    </p>
-                </div>
+            <div class="image-container" style="margin-top: 20px;">
+                <img src="gambar3.png" alt="Perbandingan pot baik vs buruk">
             </div>
         </div>
 
@@ -515,17 +419,8 @@
         <!-- SLIDE 7: JENIS WADAH KREATIF 1 -->
         <div class="slide">
             <h2>🎨 Wadah Kreatif dari Barang Bekas</h2>
-            <div class="image-placeholder">
-                <div class="image-placeholder-content">
-                    <div class="floating-icon">♻️</div>
-                    <p><strong>📸 GAMBAR 4:</strong> Kolase wadah kreatif dari barang bekas</p>
-                    <p style="font-size: 0.9em; margin-top: 10px;">Contoh: Botol plastik, kaleng bekas, ban bekas, sepatu, pipa PVC, cangkir pecah</p>
-                    <p style="font-size: 0.8em; color: #718096; margin-top: 15px;">
-                        💡 Cari: "recycled plant containers" "vertical garden bottles"<br>
-                        Atau GIF animasi: "DIY plant container gif"<br>
-                        Masukkan dengan: <code>&lt;img src="gambar4.gif" style="width:100%; border-radius:15px;"&gt;</code>
-                    </p>
-                </div>
+            <div class="image-container">
+                <img src="gambar4.png" alt="Kolase wadah kreatif dari barang bekas">
             </div>
             <div class="tip-box" style="margin-top: 20px;">
                 <strong>💬 Challenge untuk siswa:</strong> "Kalau kalian punya barang bekas di rumah, mau bikin wadah dari apa?"<br>
@@ -539,29 +434,15 @@
             <div class="grid-2">
                 <div>
                     <h3>🔮 Terrarium</h3>
-                    <div class="image-placeholder" style="min-height: 200px;">
-                        <div class="image-placeholder-content">
-                            <div class="floating-icon" style="font-size: 3em;">🔮</div>
-                            <p><strong>📸 GAMBAR 5:</strong> Foto terrarium (taman dalam botol kaca)</p>
-                            <p style="font-size: 0.8em; color: #718096; margin-top: 10px;">
-                                💡 Cari GIF: "terrarium gif" untuk animasi bergerak!<br>
-                                <code>&lt;img src="gambar5.gif"&gt;</code>
-                            </p>
-                        </div>
+                    <div class="image-container" style="min-height: 200px;">
+                        <img src="gambar5.png" alt="Terrarium - taman dalam botol kaca">
                     </div>
                     <p style="margin-top: 15px;">Ekosistem mini dalam wadah tertutup. Air bersirkulasi sendiri seperti hujan!</p>
                 </div>
                 <div>
                     <h3>💧 Hidroponik</h3>
-                    <div class="image-placeholder" style="min-height: 200px;">
-                        <div class="image-placeholder-content">
-                            <div class="floating-icon" style="font-size: 3em;">💧</div>
-                            <p><strong>📸 GAMBAR 6:</strong> Foto hidroponik sederhana</p>
-                            <p style="font-size: 0.8em; color: #718096; margin-top: 10px;">
-                                💡 Cari: "simple hydroponic system" atau GIF "hydroponics gif"<br>
-                                <code>&lt;img src="gambar6.gif"&gt;</code>
-                            </p>
-                        </div>
+                    <div class="image-container" style="min-height: 200px;">
+                        <img src="gambar6.png" alt="Sistem hidroponik sederhana">
                     </div>
                     <p style="margin-top: 15px;">Tanam tanpa tanah! Hanya pakai air dan nutrisi khusus.</p>
                 </div>
@@ -571,28 +452,12 @@
         <!-- SLIDE 9: VIDEO -->
         <div class="slide">
             <h2>🎬 Mari Kita Lihat!</h2>
-            <div class="video-placeholder">
-                <div style="position: relative; z-index: 1;">
-                    <div class="floating-icon">🎥</div>
-                    <p style="font-size: 1.5em;"><strong>VIDEO:</strong> Masukkan video pendek (2-3 menit)</p>
-                    <p style="font-size: 1.1em; margin-top: 15px;">Topik yang bisa dicari di YouTube:</p>
-                    <ul style="list-style: none; padding: 0; text-align: center; margin-top: 10px;">
-                        <li>• "How plants grow in containers"</li>
-                        <li>• "DIY vertical garden from plastic bottles"</li>
-                        <li>• "Terrarium ecosystem explained"</li>
-                        <li>• "Container gardening for beginners"</li>
-                    </ul>
-                    <p style="font-size: 0.9em; color: #d35400; margin-top: 20px; background: rgba(255,255,255,0.9); padding: 15px; border-radius: 10px;">
-                        💡 <strong>Cara embed video YouTube:</strong><br>
-                        1. Buka video di YouTube<br>
-                        2. Klik "Share" → "Embed"<br>
-                        3. Copy kode iframe<br>
-                        4. Ganti div ini dengan kode tersebut<br><br>
-                        <strong>Atau manual:</strong><br>
-                        <code style="font-size: 0.8em;">&lt;iframe width="100%" height="450" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</code>
-                    </p>
-                </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/QJom5ZWwwQM" allowfullscreen></iframe>
             </div>
+            <p style="text-align: center; margin-top: 20px; font-size: 1.2em; color: #718096;">
+                🎥 Video: Container Gardening / Tanaman dalam Wadah
+            </p>
         </div>
 
         <!-- SLIDE 10: CARA MERAWAT -->
